@@ -80,11 +80,11 @@ export function UserMenu({ profiles, onChange }: Props) {
       }
       if (
         !window.confirm(
-          `将导出用户“${currentUser.name}”的全部 ${result.total} 条有效记录：\n${result.entries} 条日记、${result.summaries} 条周总结、${result.monthSummaries} 条月总结。\n\n确定导出为 Markdown 文件吗？`,
+          `将导出用户“${currentUser.name}”的全部 ${result.total} 条有效记录：\n${result.entries} 条日记、${result.summaries} 条周总结、${result.monthSummaries} 条月总结。\n\n确定导出为文本文件吗？`,
         )
       )
         return;
-      downloadJournal(result.markdown, currentUser.name);
+      downloadJournal(result.text, currentUser.name);
       setOpen(false);
       trigger.current?.focus();
     } catch {
