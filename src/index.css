@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: Arial, 'Microsoft YaHei', sans-serif;
+  color: #a6a6a6;
+  background: #f8f7f5;
+  font-synthesis: none;
+}
+
+button:focus-visible {
+  outline: 1px solid #1966a7;
+  outline-offset: 2px;
+}
+
+/* 月总结均分容器剩余高度为七行，横线随文字在框内滚动。 */
+.journal-ruled {
+  --line-height: calc(100cqh / 7);
+  height: 100%;
+  line-height: var(--line-height);
+  overflow-y: auto;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--line-height) - 1px),
+    #999 calc(var(--line-height) - 1px),
+    #999 var(--line-height)
+  );
+  background-attachment: local;
+}
+
+/* 移动端仅显示有内容的月总结，保留三行可滚动区域。 */
+@media (width < 48rem) {
+  .month-summary:has(textarea[data-empty='true']) {
+    display: none;
+  }
+
+  .journal-ruled {
+    --line-height: calc(100cqh / 3);
+  }
+}
