@@ -1,6 +1,10 @@
 # 月历手账
 
-Vite + React + TypeScript 的本地手账应用。官方 React 插件：
+Vite + React + TypeScript 的本地手账应用。
+
+![预览](docs/preview.png)
+
+官方 React 插件：
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) 使用 [Oxc](https://oxc.rs)
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) 使用 [SWC](https://swc.rs/)
