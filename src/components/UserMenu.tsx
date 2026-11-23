@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { countUserRecords, deleteUser, saveUser, switchUser } from "./users";
-import type { Profiles } from "./users";
-import { buildJournalExport, downloadJournal } from "./exportJournal";
+import { countUserRecords } from "../lib/storage/records.ts";
+import { deleteUser, saveUser, switchUser } from "../lib/storage/profiles.ts";
+import type { Profiles } from "../lib/storage/profiles.ts";
+import { buildJournalExport, downloadJournal } from "../lib/exportJournal.ts";
 
 type Props = { profiles: Profiles; onChange: (profiles: Profiles) => void };
 

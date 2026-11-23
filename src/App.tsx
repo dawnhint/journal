@@ -1,9 +1,22 @@
+// 周计划视图：月历、当周格子与月/周总结。
 import { useState } from "react";
-import { getMonth, getWeekDates, getWeekIndex, shiftWeek } from "./calendar";
-import { JournalEntry } from "./JournalEntry";
-import { UserMenu } from "./UserMenu";
-import { entryKey, loadProfiles, monthSummaryKey, summaryKey } from "./users";
-import type { Profiles } from "./users";
+import {
+  formatDate,
+  getMonth,
+  getWeekDates,
+  getWeekIndex,
+  pad,
+  shiftWeek,
+} from "./lib/calendar.ts";
+import { Note } from "./components/Note.tsx";
+import { UserMenu } from "./components/UserMenu.tsx";
+import {
+  entryKey,
+  monthSummaryKey,
+  summaryKey,
+} from "./lib/storage/keys.ts";
+import { loadProfiles } from "./lib/storage/profiles.ts";
+import type { Profiles } from "./lib/storage/profiles.ts";
 
 const monthNames = [
   "Jan",
@@ -22,9 +35,6 @@ const monthNames = [
 const weekdays = ["一", "二", "三", "四", "五", "六", "日"];
 const dayNames = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 const cellOrder = [0, 4, 1, 5, 2, 6, 3, null];
-const pad = (day: number) => String(day).padStart(2, "0");
-const formatDate = (date: Date) =>
-  `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 
 function readProfiles(): { profiles: Profiles | null; error: string } {
   try {
@@ -181,7 +191,7 @@ function App() {
           </nav>
 
           <div className="month-summary mt-8 flex h-30 shrink-0 flex-col md:mt-[2vw] md:h-auto md:min-h-42 md:flex-1">
-            <JournalEntry
+            <Note
               key={monthlyKey}
               storageKey={monthlyKey}
               label={`${year}年${month + 1}月记录与总结`}
@@ -230,7 +240,7 @@ function App() {
                     总结
                   </h2>
                 )}
-                <JournalEntry
+                <Note
                   key={storageKey}
                   storageKey={storageKey}
                   label={

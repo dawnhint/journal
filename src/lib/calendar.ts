@@ -27,3 +27,17 @@ export function shiftWeek(year: number, month: number, week: number, direction: 
     week: getWeekIndex(anchor),
   }
 }
+
+export function pad(day: number) {
+  return String(day).padStart(2, '0')
+}
+
+export function formatDate(date: Date) {
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+export function parseDateKey(value: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null
+  const date = new Date(`${value}T00:00:00.000Z`)
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value ? date : null
+}
