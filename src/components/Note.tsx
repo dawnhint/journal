@@ -35,7 +35,7 @@ export function Note({ storageKey, label, ruled = false }: {
         rows={ruled ? 7 : undefined}
         value={note.text}
         onChange={(event) => save(event.target.value)}
-        className={`min-h-0 w-full resize-none border-0 bg-transparent p-0 text-[#111] outline-none ${ruled ? 'journal-ruled text-[15px]' : 'flex-1'}`}
+        className={`min-h-0 w-full resize-none border-0 bg-transparent p-0 text-ink outline-none ${ruled ? 'journal-ruled text-[15px]' : 'flex-1'}`}
       />
       {note.error && <p role="alert">{note.error}</p>}
     </div>

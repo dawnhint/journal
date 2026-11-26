@@ -17,7 +17,7 @@ export function UserMenu({ profiles, onChange }: Props) {
   const trigger = useRef<HTMLButtonElement>(null);
   const helpTrigger = useRef<HTMLButtonElement>(null);
   const currentUser = profiles.users.find(
-    (user) => user.id === profiles.activeUserId
+    (user) => user.id === profiles.activeUserId,
   )!;
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export function UserMenu({ profiles, onChange }: Props) {
     try {
       const { entries, summaries, monthSummaries } = countUserRecords(
         localStorage,
-        currentUser.id
+        currentUser.id,
       );
       const records =
         entries + summaries + monthSummaries > 0
@@ -71,7 +71,7 @@ export function UserMenu({ profiles, onChange }: Props) {
         profiles.users.length === 1 ? "\n删除后会创建一个空白用户 user0。" : "";
       if (
         !window.confirm(
-          `${records}确定删除用户“${currentUser.name}”吗？${lastUser}`
+          `${records}确定删除用户“${currentUser.name}”吗？${lastUser}`,
         )
       )
         return;
@@ -91,7 +91,7 @@ export function UserMenu({ profiles, onChange }: Props) {
       }
       if (
         !window.confirm(
-          `将导出用户“${currentUser.name}”的全部 ${result.total} 条有效记录：\n${result.entries} 条日记、${result.summaries} 条周总结、${result.monthSummaries} 条月总结。\n\n确定导出为文本文件吗？`
+          `将导出用户“${currentUser.name}”的全部 ${result.total} 条有效记录：\n${result.entries} 条日记、${result.summaries} 条周总结、${result.monthSummaries} 条月总结。\n\n确定导出为文本文件吗？`,
         )
       )
         return;
@@ -129,7 +129,7 @@ export function UserMenu({ profiles, onChange }: Props) {
           {open && (
             <div
               id="user-panel"
-              className="absolute right-0 z-10 w-64 border border-[#aaa] bg-[#f8f7f5] p-2"
+              className="absolute right-0 z-10 w-64 border border-line bg-[#ffffff] p-2"
             >
               {mode ? (
                 <form
@@ -140,8 +140,8 @@ export function UserMenu({ profiles, onChange }: Props) {
                         saveUser(
                           localStorage,
                           name,
-                          mode === "edit" ? currentUser.id : undefined
-                        )
+                          mode === "edit" ? currentUser.id : undefined,
+                        ),
                       );
                     } catch (error) {
                       reportError(error);
@@ -166,14 +166,14 @@ export function UserMenu({ profiles, onChange }: Props) {
                     required
                     autoComplete="off"
                     onChange={(event) => setName(event.target.value)}
-                    className="w-full border-b border-[#aaa] bg-transparent px-2 py-2 text-[#111]"
+                    className="w-full border-b border-line bg-transparent px-2 py-2 text-ink"
                   />
                   <div className="mt-2 flex justify-end">
                     {mode === "edit" && (
                       <button
                         type="button"
                         onClick={removeCurrentUser}
-                        className="mr-auto cursor-pointer px-3 py-2 text-[#a83d27] hover:bg-black/5"
+                        className="mr-auto cursor-pointer px-3 py-2 text-p2 hover:bg-black/5"
                       >
                         删除用户
                       </button>
@@ -223,7 +223,7 @@ export function UserMenu({ profiles, onChange }: Props) {
                       </button>
                     ))}
                   </div>
-                  <div className="mt-2 border-t border-[#aaa] pt-2">
+                  <div className="mt-2 border-t border-line pt-2">
                     <div className="flex items-center">
                       <button
                         type="button"
@@ -273,7 +273,7 @@ export function UserMenu({ profiles, onChange }: Props) {
                 </>
               )}
               {error && (
-                <p role="alert" className="px-2 py-2 text-[#a83d27]">
+                <p role="alert" className="px-2 py-2 text-p2">
                   {error}
                 </p>
               )}
@@ -322,7 +322,7 @@ export function UserMenu({ profiles, onChange }: Props) {
               id="help-panel"
               role="dialog"
               aria-label="说明文档"
-              className="absolute right-0 z-10 w-72 border border-[#aaa] bg-[#f8f7f5] p-2"
+              className="absolute right-0 z-10 w-72 border border-line bg-[#FFF] p-2"
             >
               <HelpDoc />
             </div>

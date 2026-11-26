@@ -109,7 +109,7 @@ function App() {
       <main className="grid gap-8 md:min-h-0 md:flex-1 md:grid-cols-[minmax(15rem,17.5%)_1fr] md:grid-rows-[minmax(0,1fr)] md:gap-x-[2.6%] md:gap-y-0">
         <aside className="flex min-h-0 min-w-0 flex-col md:overflow-y-auto">
           <header className="flex shrink-0 items-baseline gap-4 px-2 md:gap-[1.1vw]">
-            <h1 className="text-6xl leading-none font-bold text-[#1966a7] md:text-[max(48px,4.4vw)]">
+            <h1 className="text-6xl leading-none font-bold text-p1 md:text-[max(48px,4.4vw)]">
               {monthNames[month]}
             </h1>
             <p
@@ -127,7 +127,7 @@ function App() {
             {weekdays.map((day, index) => (
               <span
                 key={day}
-                className={`py-2 ${index > 4 ? "text-[#a83d27]" : ""}`}
+                className={`py-2 ${index > 4 ? "text-p2" : ""}`}
               >
                 {day}
               </span>
@@ -144,11 +144,11 @@ function App() {
                 month === today.getMonth() &&
                 day === today.getDate();
               const dateColor = isToday
-                ? "text-[#111]"
+                ? "text-ink"
                 : weekday > 4
-                  ? "text-[#a83d27]"
+                  ? "text-p2"
                   : dayWeek === week
-                    ? "text-[#1966a7]"
+                    ? "text-p1"
                     : "";
 
               return (
@@ -168,7 +168,7 @@ function App() {
 
           <nav
             aria-label="切换周"
-            className="mt-5 flex shrink-0 justify-center divide-x divide-[#aaa] md:mt-[1.5vw]"
+            className="mt-5 flex shrink-0 justify-center divide-x divide-line md:mt-[1.5vw]"
           >
             {Array.from({ length: weekCount }, (_, index) => {
               const isCurrentWeek = getWeekDates(year, month, index).some(
@@ -182,7 +182,7 @@ function App() {
                   aria-current={isCurrentWeek ? "true" : undefined}
                   aria-pressed={week === index}
                   onClick={() => setView({ ...view, week: index })}
-                  className={`cursor-pointer px-3 py-2 text-base hover:bg-black/5 md:px-[0.65vw] md:text-[max(14px,1vw)] ${isCurrentWeek ? "text-[#111]" : week === index ? "text-[#1966a7]" : ""}`}
+                  className={`cursor-pointer px-3 py-2 text-base hover:bg-black/5 md:px-[0.65vw] md:text-[max(14px,1vw)] ${isCurrentWeek ? "text-ink" : week === index ? "text-p1" : ""}`}
                 >
                   W{index + 1}
                 </button>
@@ -202,7 +202,7 @@ function App() {
 
         <section
           aria-label={`${year}年${month + 1}月第${week + 1}周`}
-          className="grid min-h-[44rem] grid-cols-2 grid-rows-4 border-t border-[#aaa] md:mt-[3.5vw] md:min-h-0"
+          className="grid min-h-[44rem] grid-cols-2 grid-rows-4 border-t border-line md:mt-[3.5vw] md:min-h-0"
         >
           {cellOrder.map((dayIndex, index) => {
             const date = dayIndex === null ? null : dates[dayIndex];
@@ -220,13 +220,13 @@ function App() {
                     ? `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
                     : "本周总结"
                 }
-                className={`flex min-h-0 min-w-0 gap-4 md:gap-6 border-b border-[#aaa] p-4 md:p-[1.6vw] ${index % 2 === 0 ? "border-r" : ""}`}
+                className={`flex min-h-0 min-w-0 gap-4 md:gap-6 border-b border-line p-4 md:p-[1.6vw] ${index % 2 === 0 ? "border-r" : ""}`}
               >
                 {date && dayIndex !== null ? (
                   <h2
-                    className={`flex w-fit shrink-0 flex-col items-center self-start ${weekend ? "text-[#a83d27]" : ""}`}
+                    className={`flex w-fit shrink-0 flex-col items-center self-start ${weekend ? "text-p2" : ""}`}
                   >
-                    <span className="border-b border-[#aaa] pb-1 text-3xl leading-none tabular-nums md:text-[max(28px,2vw)]">
+                    <span className="border-b border-line pb-1 text-3xl leading-none tabular-nums md:text-[max(28px,2vw)]">
                       {pad(date.getDate())}
                     </span>
                     <span

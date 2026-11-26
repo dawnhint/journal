@@ -1,14 +1,24 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+  /* 主题蓝 */
+  --color-p1: #1966a7;
+  /* 主题红 */
+  --color-p2: #a83d27;
+  /* 墨色 */
+  --color-ink: #111;
+  --color-line: #aaa;
+}
 
 :root {
-  font-family: Arial, 'Microsoft YaHei', sans-serif;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
   color: #a6a6a6;
-  background: #f8f7f5;
+  background: #f7f6f4;
   font-synthesis: none;
 }
 
 button:focus-visible {
-  outline: 1px solid #1966a7;
+  outline: 1px solid var(--color-p1);
   outline-offset: 2px;
 }
 
@@ -30,7 +40,7 @@ button:focus-visible {
 
 /* 移动端仅显示有内容的月总结，保留三行可滚动区域。 */
 @media (width < 48rem) {
-  .month-summary:has(textarea[data-empty='true']) {
+  .month-summary:has(textarea[data-empty="true"]) {
     display: none;
   }
 
