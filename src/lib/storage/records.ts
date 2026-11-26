@@ -10,7 +10,13 @@ export function userRecordKeys(storage: Storage, userId: string, kind: RecordKin
 export function countUserRecords(storage: Storage, userId: string) {
   const count = (kind: RecordKind) =>
     userRecordKeys(storage, userId, kind).filter(key => Boolean(storage.getItem(key))).length
-  return { entries: count('entry'), summaries: count('summary'), monthSummaries: count('month-summary') }
+  return {
+    entries: count('entry'),
+    summaries: count('summary'),
+    monthSummaries: count('month-summary'),
+    monthDays: count('month-day'),
+    monthWeeks: count('month-week'),
+  }
 }
 
 export function migrateLegacyEntries(storage: Storage, defaultUserId: string) {

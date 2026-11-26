@@ -18,13 +18,21 @@ export function buildJournalExport(storage: Storage, userId: string) {
       const validDate =
         kind === "month-summary"
           ? /^\d{4}-\d{2}$/.test(date) && parseDateKey(`${date}-01`)
-          : parseDateKey(date);
+          : kind === "month-week"
+            ? /^\d{4}-\d{2}-w\d+$/.test(date)
+            : parseDateKey(date);
       const text = storage.getItem(key);
       if (validDate && text?.trim()) records.push({ kind, date, text });
     }
   }
 
-  const priority = { "month-summary": 0, summary: 1, entry: 2 };
+  const priority: Record<RecordKind, number> = {
+    "month-summary": 0,
+    summary: 1,
+    entry: 2,
+    "month-day": 3,
+    "month-week": 4,
+  };
   records.sort(
     (a, b) =>
       a.date.localeCompare(b.date) || priority[a.kind] - priority[b.kind]
@@ -47,6 +55,8 @@ export function buildJournalExport(storage: Storage, userId: string) {
           end.toISOString().slice(0, 10)
         )}\n${record.text}`
       );
+    } else if (record.kind === "month-week") {
+      blocks.push(`${record.date}\n${record.text}`);
     } else {
       blocks.push(`${displayDate(record.date)}\n${record.text}`);
     }
@@ -64,6 +74,8 @@ export function buildJournalExport(storage: Storage, userId: string) {
     summaries: records.filter((record) => record.kind === "summary").length,
     monthSummaries: records.filter((record) => record.kind === "month-summary")
       .length,
+    monthDays: records.filter((record) => record.kind === "month-day").length,
+    monthWeeks: records.filter((record) => record.kind === "month-week").length,
   };
 }
 

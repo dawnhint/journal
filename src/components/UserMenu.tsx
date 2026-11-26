@@ -104,7 +104,7 @@ export function UserMenu({ profiles, onChange }: Props) {
   }
 
   return (
-    <div className="flex justify-end absolute top-[1vw] right-[2.5vw]">
+    <div className="flex justify-end">
       <div
         ref={container}
         className="relative flex items-center text-[14px] text-[#808080]"
@@ -267,7 +267,7 @@ export function UserMenu({ profiles, onChange }: Props) {
                       }}
                       className="w-full cursor-pointer px-2 py-2 text-left hover:bg-black/5"
                     >
-                      新增用户
+                      + 新增用户
                     </button>
                   </div>
                 </>
@@ -322,7 +322,7 @@ export function UserMenu({ profiles, onChange }: Props) {
               id="help-panel"
               role="dialog"
               aria-label="说明文档"
-              className="absolute right-0 z-10 w-72 border border-line bg-[#FFF] p-2"
+              className="absolute right-0 z-10 w-72 border border-line bg-white p-2"
             >
               <HelpDoc />
             </div>

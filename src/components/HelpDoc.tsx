@@ -4,12 +4,12 @@ export function HelpDoc() {
       <p className="text-ink">这是什么</p>
       <ul className="mt-1 list-disc list-outside pl-4">
         <li>
-          这是一本电子手帐，特点是周视图的记录方法。就像现实中的手账本一样，你能够在一页里概览每一周发生的主要事件。
+          这是一本电子手帐，有月视图和周视图两种内页。你能够在一页里概览主要事件，就像现实中的手账本一样。
         </li>
       </ul>
       <p className="mt-3 text-ink">Tips</p>
       <ul className="mt-1 list-disc list-outside pl-4">
-        <li>数据只保存在本地浏览器里。</li>
+        <li>数据保存在本地浏览器里。</li>
         <li>
           切换的用户可以是不同的身份，也可以是不同的主题，比如“生活”、“学习”等。
         </li>

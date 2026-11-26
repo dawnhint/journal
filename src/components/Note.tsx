@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
 // 日记、周总结和月总结共用保存逻辑，切换记录时由 key 重置状态。
-export function Note({ storageKey, label, ruled = false }: {
+export function Note({ storageKey, label, ruled = false, className = '' }: {
   storageKey: string
   label: string
   ruled?: boolean
+  className?: string
 }) {
   const [note, setNote] = useState(() => {
     try {
@@ -35,7 +36,7 @@ export function Note({ storageKey, label, ruled = false }: {
         rows={ruled ? 7 : undefined}
         value={note.text}
         onChange={(event) => save(event.target.value)}
-        className={`min-h-0 w-full resize-none border-0 bg-transparent p-0 text-ink outline-none ${ruled ? 'journal-ruled text-[15px]' : 'flex-1'}`}
+        className={`min-h-0 w-full resize-none border-0 bg-transparent p-0 text-ink outline-none ${ruled ? 'journal-ruled text-[15px]' : 'flex-1'} ${className}`}
       />
       {note.error && <p role="alert">{note.error}</p>}
     </div>

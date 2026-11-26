@@ -22,6 +22,94 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* 月历：Summary 独立表在左，主月历在右；移动端上下堆叠 */
+.month-board {
+  --month-header-row: 2rem;
+  --month-weeks: 6;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+.month-summary-table,
+.month-calendar {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: var(--month-header-row) repeat(
+      var(--month-weeks),
+      minmax(0, 1fr)
+    );
+  border-bottom: 1px solid var(--color-line);
+}
+
+.month-summary-table {
+  grid-template-columns: 1fr;
+  min-height: 18rem;
+}
+
+.month-calendar {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  min-height: 32rem;
+  flex: 1;
+}
+
+.month-summary-table__head,
+.month-summary-table__cell,
+.month-calendar__head,
+.month-calendar__cell {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.month-summary-table__head,
+.month-calendar__head {
+  justify-content: flex-start;
+  padding-inline: 0 0.375rem;
+}
+
+.month-summary-table__cell--last,
+.month-calendar__cell--last {
+  border-bottom: none;
+}
+
+@media (width >= 48rem) {
+  .month-board {
+    flex-direction: row;
+    gap: 1.2%;
+    padding-left: 0.6vw;
+  }
+
+  .month-summary-table {
+    width: 12%;
+    min-width: 4.5rem;
+    min-height: 0;
+    flex-shrink: 0;
+  }
+
+  .month-calendar {
+    min-height: 0;
+  }
+
+  .month-summary-table__head,
+  .month-calendar__head {
+    padding-inline: 0 0.4vw;
+  }
+}
+
+/* PLAN/DATE 对角分割线 */
+.plan-date-corner {
+  background: linear-gradient(
+    to top right,
+    transparent calc(50% - 0.5px),
+    var(--color-line) 50%,
+    transparent calc(50% + 0.5px)
+  );
+  min-height: 2.25rem;
+}
+
 /* 月总结均分容器剩余高度为七行，横线随文字在框内滚动。 */
 .journal-ruled {
   --line-height: calc(100cqh / 7);
