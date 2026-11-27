@@ -10,6 +10,16 @@ export function ViewToggle() {
       className="flex items-center gap-2 md:gap-[0.5vw]"
     >
       <NavLink
+        to="/sleep"
+        className={({ isActive }) =>
+          `${base} ${
+            isActive ? "text-ink" : "text-[#808080] hover:text-[#555]"
+          }`
+        }
+      >
+        睡眠
+      </NavLink>
+      <NavLink
         to="/month"
         className={({ isActive }) =>
           `${base} ${

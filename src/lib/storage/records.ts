@@ -16,6 +16,7 @@ export function countUserRecords(storage: Storage, userId: string) {
     monthSummaries: count('month-summary'),
     monthDays: count('month-day'),
     monthWeeks: count('month-week'),
+    sleepMonths: count('sleep'),
   }
 }
 

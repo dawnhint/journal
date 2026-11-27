@@ -14,6 +14,7 @@ export function buildJournalExport(storage: Storage, userId: string) {
     for (const kind of RECORD_KINDS) {
       const prefix = recordPrefix(kind, userId);
       if (!key.startsWith(prefix)) continue;
+      if (kind === "sleep") continue;
       const date = key.slice(prefix.length);
       const validDate =
         kind === "month-summary"
@@ -32,6 +33,7 @@ export function buildJournalExport(storage: Storage, userId: string) {
     entry: 2,
     "month-day": 3,
     "month-week": 4,
+    sleep: 5,
   };
   records.sort(
     (a, b) =>

@@ -59,13 +59,16 @@ export function UserMenu({ profiles, onChange }: Props) {
 
   function removeCurrentUser() {
     try {
-      const { entries, summaries, monthSummaries } = countUserRecords(
-        localStorage,
-        currentUser.id,
-      );
+      const { entries, summaries, monthSummaries, sleepMonths } =
+        countUserRecords(localStorage, currentUser.id);
+      const parts: string[] = [];
+      if (entries) parts.push(`${entries} 条日记`);
+      if (summaries) parts.push(`${summaries} 条周总结`);
+      if (monthSummaries) parts.push(`${monthSummaries} 条月总结`);
+      if (sleepMonths) parts.push(`${sleepMonths} 个月睡眠记录`);
       const records =
-        entries + summaries + monthSummaries > 0
-          ? `该用户有 ${entries} 条日记、${summaries} 条周总结、${monthSummaries} 条月总结，将一并删除且无法恢复。\n`
+        parts.length > 0
+          ? `该用户有 ${parts.join("、")}，将一并删除且无法恢复。\n`
           : "";
       const lastUser =
         profiles.users.length === 1 ? "\n删除后会创建一个空白用户 user0。" : "";

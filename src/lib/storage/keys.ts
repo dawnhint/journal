@@ -4,6 +4,7 @@ export type RecordKind =
   | 'month-summary'
   | 'month-day'
   | 'month-week'
+  | 'sleep'
 
 export const RECORD_KINDS: RecordKind[] = [
   'entry',
@@ -11,6 +12,7 @@ export const RECORD_KINDS: RecordKind[] = [
   'month-summary',
   'month-day',
   'month-week',
+  'sleep',
 ]
 
 export function recordPrefix(kind: RecordKind, userId: string) {
@@ -43,6 +45,11 @@ export function monthWeekKey(
 ) {
   const stamp = `${year}-${String(month + 1).padStart(2, '0')}-w${week}`
   return `${recordPrefix('month-week', userId)}${stamp}`
+}
+
+/** 睡眠月视图整月数据（JSON）。 */
+export function sleepMonthKey(userId: string, yearMonth: string) {
+  return `${recordPrefix('sleep', userId)}${yearMonth}`
 }
 
 export function isLegacyEntryKey(key: string) {
