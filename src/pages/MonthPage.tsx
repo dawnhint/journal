@@ -137,7 +137,7 @@ export function MonthPage({ profiles }: Props) {
             className="month-summary-table"
           >
             <div className="month-summary-table__head flex items-center text-sm text-ink md:text-[max(13px,0.95vw)]">
-              Summary
+              Plan
             </div>
             {Array.from({ length: WEEK_ROWS }, (_, week) => {
               const isLastRow = week === WEEK_ROWS - 1;
